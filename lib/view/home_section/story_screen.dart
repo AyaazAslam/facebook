@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:widgets/models/user_post.dart';
-import 'package:widgets/utils/widgets/butn.dart';
+import 'package:widgets/view/friends_request/frined_req_screen.dart';
+import 'package:widgets/view/home_section/homw_page.dart';
+import 'package:widgets/view/notification/notification_screen.dart';
+import 'package:widgets/view/people/people.dart';
+import 'package:widgets/view/setting/setting.dart';
 
 class MainStoryScreen extends StatefulWidget {
   const MainStoryScreen({super.key});
@@ -27,9 +30,6 @@ class _MainStoryScreenState extends State<MainStoryScreen>
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: SafeArea(
@@ -39,16 +39,7 @@ class _MainStoryScreenState extends State<MainStoryScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.transparent,
-                    width: 0,
-                  ), // remove line
-                ),
-              ),
+              decoration: BoxDecoration(color: Colors.blueAccent),
 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,95 +106,12 @@ class _MainStoryScreenState extends State<MainStoryScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  // 🏠 Home tab with stories
-                  Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: height * 0.25,
-                        color: Colors.teal[100],
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: UserPost.user.length,
-                          itemBuilder: (context, index) {
-                            return StoryPostCard(
-                              storttext: "${UserPost.user[index].text}",
-                              storyDp: "${UserPost.user[index].dp}",
-                              backgroundImage:
-                                  "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                            );
-                          },
-                        ),
-                      ),
-                      const Expanded(
-                        child: Center(
-                          child: Text(
-                            "Facebook Home Feed",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // 🎥 Videos tab
-                  const Center(
-                    child: Text(
-                      "🎥 Video Page",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  // 👥 Friends tab
-                  const Center(
-                    child: Text(
-                      "👥 Add Friends Page",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  // 🔔 Notifications tab
-                  const Center(
-                    child: Text(
-                      "🔔 Notifications Page",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  // 👤 Profile tab
-                  const Center(
-                    child: Text(
-                      "👤 Profile Page",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  // ⚙️ Settings tab
-                  const Center(
-                    child: Text(
-                      "⚙️ Settings Page",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  HomwPage(),
+                  FrinedReqScreen(),
+                  PeopleScreen(),
+                  NotificationScreen(),
+                  PeopleScreen(),
+                  SettingScreen(),
                 ],
               ),
             ),
